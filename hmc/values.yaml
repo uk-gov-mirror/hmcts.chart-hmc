@@ -98,6 +98,7 @@ servicebus:
     builtFrom: "https://github.com/hmcts/chart-hmc"
     businessArea: "CFT"
     environment: "development"
+  sbNamespace: hmc-sb-preview
   resourceGroup: hmc-aks
   serviceplan: standard
   setup:
