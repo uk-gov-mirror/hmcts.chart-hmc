@@ -99,7 +99,7 @@ servicebus:
     businessArea: "CFT"
     environment: "development"
   sbNamespace: hmc-sb-preview
-  resourceGroup: hmc-aks
+  resourceGroup: hmc-aso-preview-rg
   serviceplan: standard
   setup:
     topics:
