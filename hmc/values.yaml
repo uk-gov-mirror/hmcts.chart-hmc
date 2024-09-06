@@ -89,7 +89,7 @@ hmc-cft-hearing-service:
       HMC_OUTBOUND_QUEUE_CONNECTION_STRING:
         secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-hmi
         key: connectionString
-
+        
 servicebus:
   enabled: true
   tags:
@@ -98,6 +98,7 @@ servicebus:
     builtFrom: "https://github.com/hmcts/chart-hmc"
     businessArea: "CFT"
     environment: "development"
+  releaseNameOverride: ${SERVICE_NAME}-asb
   sbNamespace: hmc-sb-preview
   resourceGroup: hmc-aso-preview-rg
   serviceplan: standard
