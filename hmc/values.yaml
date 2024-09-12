@@ -30,7 +30,7 @@ hmc-hmi-inbound-adapter:
       S2S_URL: http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     secrets:
       HMC_SERVICE_BUS_CONNECTION_STRING:
-        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-from-hmi
+        secretRef: hmc-sb-preview
         key: connectionString
 
 hmc-hmi-outbound-adapter:
@@ -46,10 +46,10 @@ hmc-hmi-outbound-adapter:
       HMC_SERVICE_BUS_INBOUND_QUEUE: hmc-from-hmi
     secrets:
       HMC_SERVICE_BUS_OUTBOUND_CONNECTION_STRING:
-        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-hmi
+        secretRef: hmc-sb-preview
         key: connectionString
       HMC_SERVICE_BUS_INBOUND_CONNECTION_STRING:
-        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-from-hmi
+        secretRef: hmc-sb-preview
         key: connectionString
 
 hmc-cft-hearing-service:
@@ -81,13 +81,13 @@ hmc-cft-hearing-service:
       CFT_HEARING_SERVICE_DB_PORT: 5432
     secrets:
       HMC_SERVICE_BUS_CONNECTION_STRING:
-        secretRef: servicebus-secret-topic-{{ .Release.Name }}-servicebus-hmc-to-cft
+        secretRef: hmc-sb-preview
         key: connectionString
       HMC_QUEUE_CONNECTION_STRING:
-        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-from-hmi
+        secretRef: hmc-sb-preview
         key: connectionString
       HMC_OUTBOUND_QUEUE_CONNECTION_STRING:
-        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-hmi
+        secretRef: hmc-sb-preview
         key: connectionString
         
 servicebus:
