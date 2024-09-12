@@ -98,7 +98,7 @@ servicebus:
     builtFrom: "https://github.com/hmcts/chart-hmc"
     businessArea: "CFT"
     environment: "development"
-  releaseNameOverride: ${SERVICE_NAME}-asb
+  # releaseNameOverride: ${SERVICE_NAME}-asb
   sbNamespace: hmc-sb-preview
   resourceGroup: hmc-aso-preview-rg
   serviceplan: standard
