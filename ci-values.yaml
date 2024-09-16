@@ -16,3 +16,69 @@ global:
   idamWebUrl: https://idam-web-public.aat.platform.hmcts.net
   environment: aat
   devMode: true
+
+hmc-hmi-inbound-adapter:
+  java:
+    secrets:
+      HMC_SERVICE_BUS_CONNECTION_STRING:
+        secretRef: servicebus-access
+        key: connectionString
+      HMC_QUEUE_CONNECTION_STRING:
+        secretRef: servicebus-access
+        key: connectionString
+      HMC_OUTBOUND_QUEUE_CONNECTION_STRING:
+        secretRef: servicebus-access
+        key: connectionString
+    environment:
+      HMC_SERVICE_BUS_QUEUE: chart-hmc-ci-test-servicebus-hmc-from-hmi
+
+hmc-hmi-outbound-adapter:
+  java:
+    secrets:
+      HMC_SERVICE_BUS_OUTBOUND_CONNECTION_STRING:
+        secretRef: servicebus-access
+        key: connectionString
+      HMC_SERVICE_BUS_INBOUND_CONNECTION_STRING:
+        secretRef: servicebus-access
+        key: connectionString
+    environment:
+      HMC_SERVICE_BUS_OUTBOUND_QUEUE: chart-hmc-ci-test-servicebus-hmc-to-hmi
+      HMC_SERVICE_BUS_INBOUND_QUEUE: chart-hmc-ci-test-servicebus-hmc-from-hmi
+
+hmc-cft-hearing-service:
+  java:
+    secrets:
+      HMC_SERVICE_BUS_CONNECTION_STRING:
+        secretRef: servicebus-access
+        key: connectionString
+      HMC_QUEUE_CONNECTION_STRING:
+        secretRef: servicebus-access
+        key: connectionString
+      HMC_OUTBOUND_QUEUE_CONNECTION_STRING:
+        secretRef: servicebus-access
+        key: connectionString
+    environment:
+      HMC_SERVICE_BUS_TOPIC: chart-hmc-ci-test-servicebus-hmc-to-cft
+      HMC_SERVICE_BUS_SUBSCRIPTION: chart-hmc-ci-test-servicebus-hmc-subs-to-cft
+      HMC_SERVICE_BUS_QUEUE: chart-hmc-ci-test-servicebus-hmc-from-hmi
+      HMC_OUTBOUND_SERVICE_BUS_QUEUE: chart-hmc-ci-test-servicebus-hmc-to-hmi
+
+servicebus:
+  enabled: true
+  tags:
+    teamName: "CDM"
+    applicationName: "core-case-data"
+    builtFrom: "https://github.com/hmcts/chart-hmc"
+    businessArea: "CFT"
+    environment: "development"
+  sbNamespace: chart-tests-servicebus
+  resourceGroup: chart-tests-aso-preview-rg
+  serviceplan: standard
+  setup:
+    topics:
+      - name: hmc-to-cft
+    subscriptions:
+      - name: hmc-subs-to-cft
+    queues:
+      - name: hmc-from-hmi
+      - name: hmc-to-hmi
