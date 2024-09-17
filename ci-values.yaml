@@ -44,6 +44,11 @@ hmc-hmi-outbound-adapter:
     environment:
       HMC_SERVICE_BUS_OUTBOUND_QUEUE: chart-hmc-ci-test-servicebus-hmc-to-hmi
       HMC_SERVICE_BUS_INBOUND_QUEUE: chart-hmc-ci-test-servicebus-hmc-from-hmi
+      CFT_HEARING_SERVICE_DB_HOST: "{{ .Release.Name }}-postgresql"
+      CFT_HEARING_SERVICE_DB_PORT: 5432
+      CFT_HEARING_SERVICE_DB_NAME: "{{ .Values.postgresql.auth.database}}"
+      CFT_HEARING_SERVICE_DB_USERNAME: "{{ .Values.postgresql.auth.username}}"
+      CFT_HEARING_SERVICE_DB_PASSWORD: "{{ .Values.postgresql.auth.password}}"
 
 hmc-cft-hearing-service:
   java:
