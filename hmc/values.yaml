@@ -51,7 +51,7 @@ hmc-hmi-outbound-adapter:
       HMC_SERVICE_BUS_INBOUND_CONNECTION_STRING:
         secretRef: hmc-sb-preview
         key: connectionString
-     HMC_SERVICE_BUS_CONNECTION_STRING:
+      HMC_SERVICE_BUS_CONNECTION_STRING:
         secretRef: hmc-sb-preview
         key: connectionString
 
