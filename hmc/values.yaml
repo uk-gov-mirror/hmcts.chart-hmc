@@ -105,21 +105,4 @@ hmc-cft-hearing-service:
         key: connectionString
         
 servicebus:
-  enabled: true
-  tags:
-    teamName: "CDM"
-    applicationName: "core-case-data"
-    builtFrom: "https://github.com/hmcts/chart-hmc"
-    businessArea: "CFT"
-    environment: "development"
-  releaseNameOverride: ${SERVICE_NAME}
-  sbNamespace: hmc-sb-preview
-  resourceGroup: hmc-aso-preview-rg
-  setup:
-    topics:
-      - name: hmc-to-cft
-    subscriptions:
-      - name: hmc-subs-to-cft
-    queues:
-      - name: hmc-from-hmi
-      - name: hmc-to-hmi
+  enabled: false
